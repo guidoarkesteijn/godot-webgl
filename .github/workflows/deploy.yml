@@ -15,6 +15,10 @@ jobs:
       - name: LS
         run: |
           ls -ls
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Web Build
         run: |
           mkdir -v -p builds/web
