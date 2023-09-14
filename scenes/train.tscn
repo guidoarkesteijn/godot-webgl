@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://d0rtbhndws1gq"]
+
+[ext_resource type="PackedScene" uid="uid://cukpu2fvsipqk" path="res://art/models/Monkey.blend" id="1_5pwgx"]
+[ext_resource type="Material" uid="uid://cgq0m6e1ch0vl" path="res://art/materials/color.tres" id="2_dpv2p"]
+[ext_resource type="Script" path="res://scripts/state-machine/core/state-machine.gd" id="3_e7vvc"]
+[ext_resource type="Script" path="res://scripts/state-machine/core/state.gd" id="4_wnvu3"]
+[ext_resource type="Script" path="res://scripts/state-machine/core/link.gd" id="6_ng312"]
+[ext_resource type="Script" path="res://scripts/state-machine/actions/rotate-action.gd" id="7_m7nue"]
+[ext_resource type="Script" path="res://scripts/state-machine/rules/get-input-pressed-rule.gd" id="8_b37i4"]
+[ext_resource type="Script" path="res://scripts/state-machine/actions/animate-action.gd" id="9_37gg1"]
+
+[sub_resource type="Animation" id="Animation_akjwg"]
+resource_name = "lapbar-closed"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Monkey")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 7.11111e-11, 0.35, 0)
+
+[sub_resource type="Animation" id="Animation_g42q6"]
+resource_name = "lapbar-open"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Monkey")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 7.11111e-11, 0.35, 0, 1, 1, 0, 1, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4wy1c"]
+_data = {
+"lapbar-closed": SubResource("Animation_akjwg"),
+"lapbar-open": SubResource("Animation_g42q6")
+}
+
+[node name="Train" type="Node3D"]
+transform = Transform3D(0.999999, 0.00132349, -0.000720352, -0.00132284, 0.999999, 0.000881188, 0.000721538, -0.000880217, 0.999999, 0, 0, 0)
+
+[node name="Monkey" parent="." instance=ExtResource("1_5pwgx")]
+transform = Transform3D(-1, 8.85223e-10, -8.71951e-08, 4.65548e-10, 1, 2.32831e-10, 8.74279e-08, 4.65661e-10, -1, 0, 0, 0)
+
+[node name="Suzanne" parent="Monkey" index="0"]
+material_override = ExtResource("2_dpv2p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4wy1c")
+}
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_e7vvc")
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("4_wnvu3")
+
+[node name="Link" type="Node" parent="StateMachine/IdleState" node_paths=PackedStringArray("destination")]
+script = ExtResource("6_ng312")
+destination = NodePath("../../RotateState")
+
+[node name="Get-input-pressed-rule" type="Node" parent="StateMachine/IdleState/Link"]
+script = ExtResource("8_b37i4")
+
+[node name="RotateState" type="Node" parent="StateMachine"]
+script = ExtResource("4_wnvu3")
+
+[node name="RotateAction" type="Node" parent="StateMachine/RotateState" node_paths=PackedStringArray("element")]
+script = ExtResource("7_m7nue")
+element = NodePath("../../../Monkey")
+
+[node name="Animate-action" type="Node" parent="StateMachine/RotateState" node_paths=PackedStringArray("animation")]
+script = ExtResource("9_37gg1")
+animation = NodePath("../../../AnimationPlayer")
+
+[node name="Link" type="Node" parent="StateMachine/RotateState" node_paths=PackedStringArray("destination")]
+script = ExtResource("6_ng312")
+destination = NodePath("../../IdleState")
+
+[node name="Get-input-pressed-rule" type="Node" parent="StateMachine/RotateState/Link"]
+script = ExtResource("8_b37i4")
+
+[node name="AnimationState" type="Node" parent="StateMachine"]
+script = ExtResource("4_wnvu3")
+
+[editable path="Monkey"]

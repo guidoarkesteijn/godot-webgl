@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk1jtyg17brs5"]
+
+[ext_resource type="PackedScene" uid="uid://d0rtbhndws1gq" path="res://scenes/train.tscn" id="1_me1iv"]
+
+[sub_resource type="Environment" id="Environment_ebg7i"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ebg7i")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.711903, -0.24232, 0.659147, 0.16104, 0.857246, 0.489075, -0.683565, 0.454323, -0.571253, 4.09747, -1.14088, 0)
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(-0.999972, -0.00160907, -0.00733405, -0.00508258, 0.864023, 0.503427, 0.00552674, 0.50345, -0.864007, 0, 2.5, -3)
+
+[node name="Train" parent="." instance=ExtResource("1_me1iv")]
