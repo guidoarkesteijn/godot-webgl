@@ -22,7 +22,6 @@ func isValid():
 	for rule in rules:
 		if not rule.isValid():
 			return false;
-		
 	return true;
 
 func stop():

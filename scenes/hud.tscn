@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dr51fdowj1nvx"]
+[gd_scene load_steps=2 format=3 uid="uid://dr51fdowj1nvx"]
+
+[ext_resource type="Script" path="res://scripts/button-full-screen.gd" id="1_y54n3"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -52,7 +54,9 @@ text = "Hello World"
 [node name="Button" type="Button" parent="Control/HSplitContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-text = "Hello World"
+text = "Toggle Full Screen"
+text_overrun_behavior = 3
+script = ExtResource("1_y54n3")
 
 [node name="HFlowContainer" type="HFlowContainer" parent="Control/HSplitContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
