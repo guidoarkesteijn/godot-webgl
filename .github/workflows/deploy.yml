@@ -3,7 +3,8 @@ on: push
 
 env:
   GODOT_VERSION: 4.1.1
-  EXPORT_NAME: project
+  itchio_project: guidoarkesteijn/godot-webgl
+  channel: webgl
   
 jobs:
   export-web:
@@ -43,3 +44,10 @@ jobs:
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: build/web # The folder the action should deploy.
+      - name: Upload to itch.io 🚀
+        uses: robpc/itchio-upload-action@v1
+        with:
+          path: build/web
+          project: ${{ env.itchio_project }}
+          channel: ${{ env.channel }}
+          api-key: ${{ secrets.ITCHIO_API_KEY }}
