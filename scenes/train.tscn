@@ -55,6 +55,10 @@ script = ExtResource("3_e7vvc")
 [node name="IdleState" type="Node" parent="StateMachine"]
 script = ExtResource("4_wnvu3")
 
+[node name="RotateAction" type="Node" parent="StateMachine/IdleState" node_paths=PackedStringArray("element")]
+script = ExtResource("7_m7nue")
+element = NodePath("../../../Monkey2")
+
 [node name="Link" type="Node" parent="StateMachine/IdleState" node_paths=PackedStringArray("destination")]
 script = ExtResource("6_ng312")
 destination = NodePath("../../RotateState")
@@ -64,10 +68,6 @@ script = ExtResource("8_b37i4")
 
 [node name="RotateState" type="Node" parent="StateMachine"]
 script = ExtResource("4_wnvu3")
-
-[node name="RotateAction" type="Node" parent="StateMachine/RotateState" node_paths=PackedStringArray("element")]
-script = ExtResource("7_m7nue")
-element = NodePath("../../../Monkey2")
 
 [node name="Animate-action" type="Node" parent="StateMachine/RotateState" node_paths=PackedStringArray("animation")]
 script = ExtResource("9_37gg1")

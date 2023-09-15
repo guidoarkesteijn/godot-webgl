@@ -1,4 +1,4 @@
-@icon("res://icons/scale.svg")
+@icon("res://icons/link.svg")
 
 extends Node
 
@@ -24,7 +24,6 @@ func isValid():
 			return false;
 		
 	return true;
-	pass
 
 func stop():
 	for rule in rules:
