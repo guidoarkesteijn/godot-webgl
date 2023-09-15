@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://d0rtbhndws1gq"]
 
-[ext_resource type="PackedScene" uid="uid://cukpu2fvsipqk" path="res://art/models/Monkey.blend" id="1_5pwgx"]
+[ext_resource type="PackedScene" uid="uid://d3qcp1ism53au" path="res://art/models/Monkey.glb" id="1_0p6sf"]
 [ext_resource type="Material" uid="uid://cgq0m6e1ch0vl" path="res://art/materials/color.tres" id="2_dpv2p"]
 [ext_resource type="Script" path="res://scripts/state-machine/core/state-machine.gd" id="3_e7vvc"]
 [ext_resource type="Script" path="res://scripts/state-machine/core/state.gd" id="4_wnvu3"]
@@ -14,7 +14,7 @@ resource_name = "lapbar-closed"
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Monkey")
+tracks/0/path = NodePath("Monkey2")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 7.11111e-11, 0.35, 0)
@@ -24,7 +24,7 @@ resource_name = "lapbar-open"
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Monkey")
+tracks/0/path = NodePath("Monkey2")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 7.11111e-11, 0.35, 0, 1, 1, 0, 1, 0)
@@ -38,10 +38,10 @@ _data = {
 [node name="Train" type="Node3D"]
 transform = Transform3D(0.999999, 0.00132349, -0.000720352, -0.00132284, 0.999999, 0.000881188, 0.000721538, -0.000880217, 0.999999, 0, 0, 0)
 
-[node name="Monkey" parent="." instance=ExtResource("1_5pwgx")]
-transform = Transform3D(-1, 8.85223e-10, -8.71951e-08, 4.65548e-10, 1, 2.32831e-10, 8.74279e-08, 4.65661e-10, -1, 0, 0, 0)
+[node name="Monkey2" parent="." instance=ExtResource("1_0p6sf")]
+transform = Transform3D(-1, 1.86446e-10, -8.73697e-08, 1.16302e-10, 1, 5.82077e-11, 8.74279e-08, 1.16415e-10, -1, 7.11111e-11, 0.35, 0)
 
-[node name="Suzanne" parent="Monkey" index="0"]
+[node name="Suzanne" parent="Monkey2" index="0"]
 material_override = ExtResource("2_dpv2p")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -67,7 +67,7 @@ script = ExtResource("4_wnvu3")
 
 [node name="RotateAction" type="Node" parent="StateMachine/RotateState" node_paths=PackedStringArray("element")]
 script = ExtResource("7_m7nue")
-element = NodePath("../../../Monkey")
+element = NodePath("../../../Monkey2")
 
 [node name="Animate-action" type="Node" parent="StateMachine/RotateState" node_paths=PackedStringArray("animation")]
 script = ExtResource("9_37gg1")
@@ -83,4 +83,4 @@ script = ExtResource("8_b37i4")
 [node name="AnimationState" type="Node" parent="StateMachine"]
 script = ExtResource("4_wnvu3")
 
-[editable path="Monkey"]
+[editable path="Monkey2"]
