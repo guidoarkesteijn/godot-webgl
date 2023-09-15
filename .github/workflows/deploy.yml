@@ -29,7 +29,7 @@ jobs:
           godot -v --headless --export-release "Web" build/web/index.html
       - name: Install rsync 📚
         run: |
-          apt-get update && apt-get install -y rsync
+          apt-get update && apt-get install -y rsync && apt-get install -y curl
       # Workaround for SharedArrayBuffer support on GitHub Pages
       # See: https://github.com/godotengine/godot-docs/issues/7084
       - run: |
