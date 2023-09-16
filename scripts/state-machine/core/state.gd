@@ -24,7 +24,7 @@ func update(delta):
 		action.update(delta);
 	pass
 	
-func check():
+func check() -> State:
 	for rule in rules:
 		if rule.isValid():
 			return rule.destination

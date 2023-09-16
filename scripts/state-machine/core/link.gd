@@ -18,7 +18,7 @@ func start():
 		rule.start()
 	pass
 
-func isValid():
+func isValid() -> bool:
 	for rule in rules:
 		if not rule.isValid():
 			return false;

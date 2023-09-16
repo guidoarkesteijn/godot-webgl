@@ -10,5 +10,5 @@ func start():
 func stop():
 	pass;
 
-func isValid():
+func isValid() -> bool:
 	return false
